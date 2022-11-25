@@ -29,7 +29,7 @@ import ToDoList from "../ToDoList/ToDoList.vue";
 .container {
   background: rgb(255, 255, 255);
   margin-top: 25px;
-  border: 1px solid hsl(233, 11%, 84%);
+  /* border: 1px solid hsl(233, 11%, 84%); */
   border-radius: 5px;
 
   .todo-buttons {

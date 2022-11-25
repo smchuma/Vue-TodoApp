@@ -9,16 +9,16 @@
 .app {
   width: 100%;
   min-height: 100vh;
-  position: relative;
   background-image: url("./assets/bg-desktop-light.jpg");
   background-repeat: no-repeat;
-  background-color: hsl(0, 0%, 100%);
   display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 
   .todo-container {
     margin-top: 80px;
-    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,12 +53,14 @@
     background-color: hsl(235, 21%, 11%);
     background-image: url("./assets/bg-desktop-dark.jpg");
   }
+
   .footer {
     p {
-      color: hsl(234, 11%, 52%);
+      color: hsl(236, 9%, 61%);
       font-size: 12px;
       text-align: center;
-      margin: 30px;
+      padding: 20px;
+      font-weight: 400;
     }
   }
 }
