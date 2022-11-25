@@ -17,7 +17,7 @@
   padding: 20px 10px;
   border-bottom: 1px solid hsl(233, 11%, 84%);
   label {
-    margin-left: 12px;
+    margin-left: 17px;
     font-size: 19px;
     color: hsl(235, 19%, 35%);
     font-weight: 400;

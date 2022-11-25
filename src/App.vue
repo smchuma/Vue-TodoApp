@@ -15,6 +15,9 @@ import ToDoBody from "./components/TodoBody/ToDoBody.vue";
             <ToDoInput />
             <ToDoBody />
           </div>
+          <div class="footer">
+            <p>Drag and drop to reorder list</p>
+          </div>
         </div>
       </div>
     </h1>

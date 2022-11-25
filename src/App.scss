@@ -53,4 +53,12 @@
     background-color: hsl(235, 21%, 11%);
     background-image: url("./assets/bg-desktop-dark.jpg");
   }
+  .footer {
+    p {
+      color: hsl(234, 11%, 52%);
+      font-size: 12px;
+      text-align: center;
+      margin: 30px;
+    }
+  }
 }
