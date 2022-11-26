@@ -6,18 +6,20 @@ import ToDoList from "../ToDoList/ToDoList.vue";
     <ul class="todo-list">
       <ToDoList />
     </ul>
-    <div class="todo-buttons">
-      <div class="item-number">
-        <p>2 items left</p>
-      </div>
-      <div class="btn">
-        <div class="all">All</div>
-        <div class="active">Active</div>
-        <div class="completed">Completed</div>
-      </div>
-      <div class="clear">
-        <div class="clear-completed">Clear Completed</div>
-      </div>
+    <div class="todo-footer">
+      <span class="count"> 0 items left </span>
+      <ul class="btn">
+        <li class="active">
+          <a href="#" class="all-btn">All</a>
+        </li>
+        <li>
+          <a href="#" class="active-btn">Active</a>
+        </li>
+        <li>
+          <a href="#" class="completed-btn">Completed</a>
+        </li>
+      </ul>
+      <button class="clear-btn">Clear Completed</button>
     </div>
   </div>
 </template>
@@ -34,40 +36,40 @@ import ToDoList from "../ToDoList/ToDoList.vue";
     list-style: none;
   }
 
-  .todo-buttons {
+  .todo-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
 
-    .item-number {
-      p {
-        font-size: 14px;
-        color: hsl(236, 9%, 61%);
-        font-weight: 400;
-      }
+    .count {
+      font-size: 14px;
+      color: hsl(236, 9%, 61%);
     }
+
     .btn {
       display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
 
-      div {
-        margin: 0 10px;
-        font-size: 15px;
-        color: hsl(236, 9%, 61%);
-        font-weight: 400;
-        cursor: pointer;
-      }
-      .all {
-        color: hsl(220, 98%, 61%);
+      li {
+        margin-right: 10px;
+        a {
+          text-decoration: none;
+          color: hsl(236, 9%, 61%);
+          font-size: 14px;
+        }
       }
     }
-    .clear {
-      div {
-        font-size: 15px;
-        color: hsl(236, 9%, 61%);
-        font-weight: 400;
-        cursor: pointer;
-      }
+
+    .clear-btn {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      color: hsl(236, 9%, 61%);
+      cursor: pointer;
     }
   }
 }

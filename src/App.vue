@@ -9,12 +9,12 @@ import ToDoBody from "./components/TodoBody/ToDoBody.vue";
         <h1>TODO</h1>
         <img src="./assets/ICON-MOON.SVG" />
       </header>
-      <div>
+      <main>
         <ToDoInput />
         <ToDoBody />
-      </div>
+      </main>
     </div>
-    <div class="footer">
+    <div class="drag">
       <p>Drag and drop to reorder list</p>
     </div>
   </div>
