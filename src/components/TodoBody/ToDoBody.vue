@@ -5,9 +5,6 @@ import ToDoList from "../ToDoList/ToDoList.vue";
   <div class="container">
     <ul class="todo-list">
       <ToDoList />
-      <ToDoList />
-      <ToDoList />
-      <ToDoList />
     </ul>
     <div class="todo-buttons">
       <div class="item-number">
@@ -27,10 +24,15 @@ import ToDoList from "../ToDoList/ToDoList.vue";
 
 <style lang="scss" scoped>
 .container {
-  background: rgb(255, 255, 255);
-  margin-top: 25px;
-  /* border: 1px solid hsl(233, 11%, 84%); */
+  background: white;
+  margin-top: 30px;
+  width: 100%;
   border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+
+  .todo-list {
+    list-style: none;
+  }
 
   .todo-buttons {
     display: flex;

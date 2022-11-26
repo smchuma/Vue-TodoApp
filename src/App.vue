@@ -6,10 +6,10 @@ import ToDoBody from "./components/TodoBody/ToDoBody.vue";
   <div class="app activ">
     <div class="todo-container">
       <header class="header">
-        <h2>TODO</h2>
+        <h1>TODO</h1>
         <img src="./assets/ICON-MOON.SVG" />
       </header>
-      <div class="main">
+      <div>
         <ToDoInput />
         <ToDoBody />
       </div>
@@ -22,7 +22,4 @@ import ToDoBody from "./components/TodoBody/ToDoBody.vue";
 
 <style lang="scss">
 @import "./App.scss";
-
-.main {
-}
 </style>

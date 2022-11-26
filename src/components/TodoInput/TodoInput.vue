@@ -15,7 +15,7 @@
   color: white;
 
   .input {
-    width: 635px;
+    width: 100%;
     padding: 15px;
     display: flex;
     background: white;
@@ -26,7 +26,7 @@
     }
 
     input {
-      width: 635px;
+      width: 100%;
       background: transparent;
       outline: none;
       border: none;
@@ -38,9 +38,9 @@
 
   &.active {
     .input {
-      background: hsl(235, 24%, 19%);
+      /* background: hsl(235, 24%, 19%); */
       input {
-        color: hsl(234, 39%, 85%);
+        /* color: hsl(234, 39%, 85%); */
       }
     }
   }
