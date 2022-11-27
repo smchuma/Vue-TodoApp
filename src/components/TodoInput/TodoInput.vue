@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div>
     <div class="heading activ">
       <div class="input">
@@ -7,8 +7,9 @@
           type="text"
           placeholder="Create a new todo"
           autofocus
+          :value="modelValue"
           @keyup.enter="addTodo"
-          @input="handleInput"
+          @input="$emit('update:modelValue', $event.target.value)"
         />
       </div>
     </div>
@@ -17,21 +18,9 @@
 <script>
 export default {
   name: "TodoInput",
-  props: ["addTodo", "newToDo"],
-
-  data() {
-    return {
-      content: this.newToDo,
-    };
-  },
-
-  methods: {
-    handleInput(event) {
-      this.$emit("handleInput", (this.content = event.target.value));
-    },
-  },
+  props: ["addTodo", "modelValue"],
 };
 </script>
 <style lang="scss">
 @import "./TodoInput.scss";
-</style> -->
+</style>

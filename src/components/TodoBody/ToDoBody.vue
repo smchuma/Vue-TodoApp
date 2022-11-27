@@ -1,7 +1,14 @@
 <template>
   <div class="container">
     <ul class="todo-list">
-      <ToDoList :toDos="toDos" :removeToDo="removeToDo" />
+      <ToDoList
+        :toDos="toDos"
+        :removeToDo="removeToDo"
+        :editToDo="editToDo"
+        :editedToDo="editedToDo"
+        :modelValue="modelValue"
+        :updateToDo="updateToDo"
+      />
     </ul>
     <ToDoFooter />
   </div>
@@ -16,16 +23,14 @@ export default {
     ToDoList,
     ToDoFooter,
   },
-  props: {
-    toDos: {
-      type: Array,
-      required: true,
-    },
-    removeToDo: {
-      type: Function,
-      required: true,
-    },
-  },
+  props: [
+    "toDos",
+    "removeToDo",
+    "editToDo",
+    "editedToDo",
+    "modelValue",
+    "updateToDo",
+  ],
 };
 </script>
 <style lang="scss">

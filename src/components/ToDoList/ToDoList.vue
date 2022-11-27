@@ -1,24 +1,36 @@
 <template>
-  <li class="list" v-for:="toDo in toDos">
-    <div class="view" key="toDo.id">
+  <li :class="{ editing: todo == editedToDo }" v-for:="todo in toDos">
+    <div class="view" key="todo.id">
       <input type="checkbox" class="toggle" />
-      <label>{{ toDo.text }}</label>
+      <label @dblclick="editToDo(todo)">{{ todo.text }}</label>
       <button class="remove">
         <img
           src="../../assets/ICON-CROSS.SVG"
           alt="cross"
-          v-on:click="removeToDo(toDo)"
+          @click="removeToDo(todo)"
         />
       </button>
     </div>
-    <input class="edit" value="edit a todo" />
+    <input
+      class="edit"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
+      @keyup.enter="updateToDo(todo)"
+    />
   </li>
 </template>
 
 <script>
 export default {
   name: "ToDoList",
-  props: ["toDos", "removeToDo"],
+  props: [
+    "toDos",
+    "removeToDo",
+    "editToDo",
+    "editedToDo",
+    "modelValue",
+    "updateToDo",
+  ],
 };
 </script>
 

@@ -6,20 +6,15 @@
         <img src="./assets/ICON-MOON.SVG" />
       </header>
       <main>
-        <!-- <ToDoInput :addTodo="addTodo" newToDo="newToDo" /> -->
-        <div class="heading activ">
-          <div class="input">
-            <img src="./assets/FAVICON-32X32.PNG" alt="" />
-            <input
-              type="text"
-              placeholder="Create a new todo"
-              autofocus
-              @keyup.enter="addTodo"
-              v-model="newToDo"
-            />
-          </div>
-        </div>
-        <ToDoBody :toDos="toDos" :removeToDo="removeToDo" />
+        <ToDoInput :addTodo="addTodo" v-model="newToDo" />
+        <ToDoBody
+          :toDos="toDos"
+          :removeToDo="removeToDo"
+          :editToDo="editToDo"
+          :editedToDo="editedToDo"
+          v-model="editedToDoText"
+          :updateToDo="updateToDo"
+        />
       </main>
     </div>
     <div class="drag">
@@ -28,13 +23,13 @@
   </div>
 </template>
 <script>
-// import ToDoInput from "./components/TodoInput/TodoInput.vue";
+import ToDoInput from "./components/TodoInput/TodoInput.vue";
 import ToDoBody from "./components/TodoBody/ToDoBody.vue";
 
 export default {
   name: "App",
   components: {
-    // ToDoInput,
+    ToDoInput,
     ToDoBody,
   },
   data() {
@@ -42,6 +37,8 @@ export default {
       toDos: [],
       newToDo: " ",
       toDoID: 0,
+      editedToDo: null,
+      editedToDoText: "",
     };
   },
   methods: {
@@ -59,7 +56,21 @@ export default {
       this.newToDo = "";
     },
     removeToDo(todo) {
-      this.toDos = this.toDos.filter((toDo) => toDo.id !== todo.id);
+      this.toDos.splice(this.toDos.indexOf(todo), 1);
+    },
+    editToDo(todo) {
+      this.editedToDo = todo;
+      this.editedToDoText = todo.text;
+      this.editedToDoText = todo.text;
+    },
+    updateToDo(todo) {
+      if (!this.editedToDo) {
+        return;
+      } else if (!todo.text) {
+        this.removeToDo(todo);
+      }
+      this.editedToDo = null;
+      todo.text = this.editedToDoText.trim();
     },
   },
 };
@@ -67,5 +78,3 @@ export default {
 <style lang="scss">
 @import "./App.scss";
 </style>
-
-this.content = event.target.value;
