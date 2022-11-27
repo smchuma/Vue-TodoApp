@@ -1,7 +1,3 @@
-<script setup>
-import ToDoInput from "./components/TodoInput/TodoInput.vue";
-import ToDoBody from "./components/TodoBody/ToDoBody.vue";
-</script>
 <template>
   <div class="app activ">
     <div class="todo-container">
@@ -10,8 +6,15 @@ import ToDoBody from "./components/TodoBody/ToDoBody.vue";
         <img src="./assets/ICON-MOON.SVG" />
       </header>
       <main>
-        <ToDoInput />
-        <ToDoBody />
+        <ToDoInput :addTodo="addTodo" v-model="newToDo" />
+        <TodoList
+          :toDos="toDos"
+          :removeToDo="removeToDo"
+          :editToDo="editToDo"
+          :editedToDo="editedToDo"
+          v-model="editedToDoText"
+          :updateToDo="updateToDo"
+        />
       </main>
     </div>
     <div class="drag">
@@ -19,7 +22,67 @@ import ToDoBody from "./components/TodoBody/ToDoBody.vue";
     </div>
   </div>
 </template>
+<script>
+import ToDoInput from "./components/TodoInput/TodoInput.vue";
+import TodoList from "./components/TodoList/TodoList.vue";
 
+const STORAGE_KEY = "vue-todo-app-storage";
+
+export default {
+  name: "App",
+  components: {
+    ToDoInput,
+    TodoList,
+  },
+  data() {
+    return {
+      toDos: [],
+      newToDo: " ",
+      toDoID: 0,
+      editedToDo: null,
+      editedToDoText: "",
+    };
+  },
+  created() {
+    this.toDos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  },
+  methods: {
+    addTodo() {
+      if (this.newToDo.trim().length == 0) {
+        return;
+      }
+      this.toDos.push({
+        id: this.toDoID,
+        text: this.newToDo,
+        completed: false,
+      });
+      this.toDoID++;
+      this.newToDo = "";
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
+    },
+    removeToDo(todo) {
+      this.toDos.splice(this.toDos.indexOf(todo), 1);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
+    },
+    editToDo(todo) {
+      this.editedToDo = todo;
+      this.editedToDoText = todo.text;
+      this.editedToDoText = todo.text;
+    },
+    updateToDo(todo) {
+      if (!this.editedToDo) {
+        return;
+      } else if (!todo.text) {
+        this.removeToDo(todo);
+      }
+      this.editedToDo = null;
+      todo.text = this.editedToDoText.trim();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
+    },
+  },
+};
+</script>
 <style lang="scss">
 @import "./App.scss";
 </style>

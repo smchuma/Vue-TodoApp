@@ -1,0 +1,36 @@
+.todo-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+  .count {
+    font-size: 14px;
+    color: hsl(236, 9%, 61%);
+  }
+
+  .btn {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-right: 10px;
+      a {
+        text-decoration: none;
+        color: hsl(236, 9%, 61%);
+        font-size: 14px;
+      }
+    }
+  }
+
+  .clear-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: hsl(236, 9%, 61%);
+    cursor: pointer;
+  }
+}
