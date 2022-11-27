@@ -14,7 +14,6 @@
           :editedToDo="editedToDo"
           v-model="editedToDoText"
           :updateToDo="updateToDo"
-          :toggleCompletion="toggleCompletion"
         />
       </main>
     </div>
@@ -50,8 +49,7 @@ export default {
       this.toDos.push({
         id: this.toDoID,
         text: this.newToDo,
-        todoCompletionButtonState: "",
-        todoCompletionState: "incomplete",
+        completed: false,
       });
       this.toDoID++;
       this.newToDo = "";
@@ -72,21 +70,6 @@ export default {
       }
       this.editedToDo = null;
       todo.text = this.editedToDoText.trim();
-    },
-    toggleCompletion(todo) {
-      if (
-        todo.todoCompletionButtonState === " " ||
-        todo.todoCompletionButtonState === false
-      ) {
-        todo.todoCompletionButtonState = "checked";
-        todo.todoCompletionState = "completed";
-      } else if (
-        todo.todoCompletionButtonState === "checked" ||
-        todo.todoCompletionButtonState === true
-      ) {
-        todo.todoCompletionButtonState = "";
-        todo.todoCompletionState = "incomplete";
-      }
     },
   },
 };

@@ -2,11 +2,14 @@
   <div class="container">
     <ul class="todo-list">
       <li
-        :class="[{ editing: todo == editedToDo }, todo.toggleCompletion]"
+        :class="[
+          { editing: todo == editedToDo },
+          { completed: todo.completed },
+        ]"
         v-for:="todo in toDos"
       >
         <div class="view" key="todo.id">
-          <input type="checkbox" @click="toggleCompletion(todo)" />
+          <input type="checkbox" v-model="todo.completed" />
           <label @dblclick="editToDo(todo)">{{ todo.text }}</label>
           <button class="remove">
             <img
@@ -42,7 +45,6 @@ export default {
     "editedToDo",
     "modelValue",
     "updateToDo",
-    "toggleCompletion",
   ],
 };
 </script>
