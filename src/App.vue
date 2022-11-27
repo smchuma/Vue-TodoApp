@@ -26,6 +26,8 @@
 import ToDoInput from "./components/TodoInput/TodoInput.vue";
 import TodoList from "./components/TodoList/TodoList.vue";
 
+const STORAGE_KEY = "vue-todo-app-storage";
+
 export default {
   name: "App",
   components: {
@@ -41,6 +43,9 @@ export default {
       editedToDoText: "",
     };
   },
+  created() {
+    this.toDos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  },
   methods: {
     addTodo() {
       if (this.newToDo.trim().length == 0) {
@@ -53,9 +58,12 @@ export default {
       });
       this.toDoID++;
       this.newToDo = "";
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
     },
     removeToDo(todo) {
       this.toDos.splice(this.toDos.indexOf(todo), 1);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
     },
     editToDo(todo) {
       this.editedToDo = todo;
@@ -70,6 +78,7 @@ export default {
       }
       this.editedToDo = null;
       todo.text = this.editedToDoText.trim();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
     },
   },
 };
