@@ -7,13 +7,14 @@
       </header>
       <main>
         <ToDoInput :addTodo="addTodo" v-model="newToDo" />
-        <ToDoBody
+        <TodoList
           :toDos="toDos"
           :removeToDo="removeToDo"
           :editToDo="editToDo"
           :editedToDo="editedToDo"
           v-model="editedToDoText"
           :updateToDo="updateToDo"
+          :toggleCompletion="toggleCompletion"
         />
       </main>
     </div>
@@ -24,13 +25,13 @@
 </template>
 <script>
 import ToDoInput from "./components/TodoInput/TodoInput.vue";
-import ToDoBody from "./components/TodoBody/ToDoBody.vue";
+import TodoList from "./components/TodoList/TodoList.vue";
 
 export default {
   name: "App",
   components: {
     ToDoInput,
-    ToDoBody,
+    TodoList,
   },
   data() {
     return {
@@ -49,7 +50,7 @@ export default {
       this.toDos.push({
         id: this.toDoID,
         text: this.newToDo,
-        completionButtonState: "",
+        todoCompletionButtonState: "",
         todoCompletionState: "incomplete",
       });
       this.toDoID++;
@@ -71,6 +72,21 @@ export default {
       }
       this.editedToDo = null;
       todo.text = this.editedToDoText.trim();
+    },
+    toggleCompletion(todo) {
+      if (
+        todo.todoCompletionButtonState === " " ||
+        todo.todoCompletionButtonState === false
+      ) {
+        todo.todoCompletionButtonState = "checked";
+        todo.todoCompletionState = "completed";
+      } else if (
+        todo.todoCompletionButtonState === "checked" ||
+        todo.todoCompletionButtonState === true
+      ) {
+        todo.todoCompletionButtonState = "";
+        todo.todoCompletionState = "incomplete";
+      }
     },
   },
 };
