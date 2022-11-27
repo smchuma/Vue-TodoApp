@@ -1,30 +1,34 @@
-<script setup>
-import ToDoList from "../ToDoList/ToDoList.vue";
-</script>
 <template>
   <div class="container">
     <ul class="todo-list">
-      <ToDoList />
+      <ToDoList :toDos="toDos" :removeToDo="removeToDo" />
     </ul>
-    <div class="todo-footer">
-      <span class="count"> 0 items left </span>
-      <ul class="btn">
-        <li class="active">
-          <a href="#" class="all-btn">All</a>
-        </li>
-        <li>
-          <a href="#" class="active-btn">Active</a>
-        </li>
-        <li>
-          <a href="#" class="completed-btn">Completed</a>
-        </li>
-      </ul>
-      <button class="clear-btn">Clear Completed</button>
-    </div>
+    <ToDoFooter />
   </div>
 </template>
 
-<style lang="scss" scoped>
+<script>
+import ToDoList from "../ToDoList/ToDoList.vue";
+import ToDoFooter from "../ToDoFooter/ToDoFooter.vue";
+export default {
+  name: "ToDoBody",
+  components: {
+    ToDoList,
+    ToDoFooter,
+  },
+  props: {
+    toDos: {
+      type: Array,
+      required: true,
+    },
+    removeToDo: {
+      type: Function,
+      required: true,
+    },
+  },
+};
+</script>
+<style lang="scss">
 .container {
   background: white;
   margin-top: 30px;
@@ -34,43 +38,6 @@ import ToDoList from "../ToDoList/ToDoList.vue";
 
   .todo-list {
     list-style: none;
-  }
-
-  .todo-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-
-    .count {
-      font-size: 14px;
-      color: hsl(236, 9%, 61%);
-    }
-
-    .btn {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-
-      li {
-        margin-right: 10px;
-        a {
-          text-decoration: none;
-          color: hsl(236, 9%, 61%);
-          font-size: 14px;
-        }
-      }
-    }
-
-    .clear-btn {
-      background: transparent;
-      border: none;
-      outline: none;
-      font-size: 14px;
-      color: hsl(236, 9%, 61%);
-      cursor: pointer;
-    }
   }
 }
 </style>
