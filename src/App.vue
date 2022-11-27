@@ -14,6 +14,7 @@
           :editedToDo="editedToDo"
           v-model="editedToDoText"
           :updateToDo="updateToDo"
+          :clearCompleted="clearCompleted"
         />
       </main>
     </div>
@@ -41,10 +42,12 @@ export default {
       toDoID: 0,
       editedToDo: null,
       editedToDoText: "",
+      // itemLeft: null,
     };
   },
   created() {
     this.toDos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    // this.itemLeft = this.toDos.length;
   },
   methods: {
     addTodo() {
@@ -78,6 +81,10 @@ export default {
       }
       this.editedToDo = null;
       todo.text = this.editedToDoText.trim();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
+    },
+    clearCompleted() {
+      this.toDos = this.toDos.filter((todo) => !todo.completed);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
     },
   },

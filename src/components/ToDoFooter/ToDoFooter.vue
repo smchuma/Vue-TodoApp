@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="todo-footer">
     <span class="count"> 0 items left </span>
     <ul class="btn">
@@ -12,12 +12,13 @@
         <a href="#" class="completed-btn">Completed</a>
       </li>
     </ul>
-    <button class="clear-btn">Clear Completed</button>
+    <button class="clear-btn" @click="clearCompleted">Clear Completed</button>
   </div>
 </template>
 <script>
 export default {
   name: "ToDoFooter",
+  props: ["clearCompleted"],
 };
 </script>
 <style lang="scss">

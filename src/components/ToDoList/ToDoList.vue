@@ -27,7 +27,7 @@
         />
       </li>
     </ul>
-    <ToDoFooter />
+    <ToDoFooter :clearCompleted="clearCompleted" />
   </div>
 </template>
 
@@ -45,6 +45,7 @@ export default {
     "editedToDo",
     "modelValue",
     "updateToDo",
+    "clearCompleted",
   ],
 };
 </script>
