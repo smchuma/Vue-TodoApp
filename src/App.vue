@@ -15,6 +15,9 @@
           v-model="editedToDoText"
           :updateToDo="updateToDo"
           :clearCompleted="clearCompleted"
+          :itemLeft="itemLeft"
+          :showActive="showActive"
+          :showCompleted="showCompleted"
         />
       </main>
     </div>
@@ -42,12 +45,18 @@ export default {
       toDoID: 0,
       editedToDo: null,
       editedToDoText: "",
-      // itemLeft: null,
+      allBtn: "selected",
+      activeBtn: null,
+      completedBtn: null,
     };
   },
   created() {
     this.toDos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    // this.itemLeft = this.toDos.length;
+  },
+  computed: {
+    itemLeft() {
+      return this.toDos.filter((todo) => !todo.completed).length;
+    },
   },
   methods: {
     addTodo() {
@@ -86,6 +95,18 @@ export default {
     clearCompleted() {
       this.toDos = this.toDos.filter((todo) => !todo.completed);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
+    },
+    showActive() {
+      this.toDos = this.toDos.filter((todo) => !todo.completed);
+      this.allBtn = null;
+      this.activeBtn = "selected";
+      this.completedBtn = null;
+    },
+    showCompleted() {
+      this.toDos = this.toDos.filter((todo) => todo.completed);
+      this.allBtn = null;
+      this.activeBtn = null;
+      this.completedBtn = "selected";
     },
   },
 };

@@ -1,15 +1,15 @@
 <template>
   <div class="todo-footer">
-    <span class="count"> 0 items left </span>
+    <span class="count"> {{ itemLeft }} items left </span>
     <ul class="btn">
       <li class="active">
         <a href="#" class="all-btn">All</a>
       </li>
       <li>
-        <a href="#" class="active-btn">Active</a>
+        <a href="#" class="active-btn" @click="showActive">Active</a>
       </li>
       <li>
-        <a href="#" class="completed-btn">Completed</a>
+        <a href="#" class="completed-btn" @click="showCompleted">Completed</a>
       </li>
     </ul>
     <button class="clear-btn" @click="clearCompleted">Clear Completed</button>
@@ -18,7 +18,7 @@
 <script>
 export default {
   name: "ToDoFooter",
-  props: ["clearCompleted"],
+  props: ["clearCompleted", "itemLeft", "showActive", "showCompleted"],
 };
 </script>
 <style lang="scss">
