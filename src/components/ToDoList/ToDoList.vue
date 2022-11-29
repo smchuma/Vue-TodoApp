@@ -2,10 +2,7 @@
   <div class="container">
     <ul class="todo-list">
       <li
-        :class="[
-          { editing: todo == editedToDo },
-          { completed: todo.completed },
-        ]"
+        :class="{ completed: todo.completed, editing: todo == editedToDo }"
         v-for:="todo in toDos"
       >
         <div class="view" key="todo.id">
@@ -30,8 +27,7 @@
     <ToDoFooter
       :clearCompleted="clearCompleted"
       :itemLeft="itemLeft"
-      :showActive="showActive"
-      :showCompleted="showCompleted"
+      :visibility="visibility"
     />
   </div>
 </template>
@@ -52,8 +48,7 @@ export default {
     "updateToDo",
     "clearCompleted",
     "itemLeft",
-    "showActive",
-    "showCompleted",
+    "visibility",
   ],
 };
 </script>

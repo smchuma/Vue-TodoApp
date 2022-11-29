@@ -21,6 +21,10 @@
         text-decoration: none;
         color: hsl(236, 9%, 61%);
         font-size: 14px;
+
+        &.selected {
+          color: hsl(220, 98%, 61%);
+        }
       }
     }
   }

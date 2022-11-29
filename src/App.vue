@@ -6,7 +6,7 @@
         <img src="./assets/ICON-MOON.SVG" />
       </header>
       <main>
-        <ToDoInput :addTodo="addTodo" v-model="newToDo" />
+        <TodoInput :addTodo="addTodo" v-model="newToDo" />
         <TodoList
           :toDos="toDos"
           :removeToDo="removeToDo"
@@ -16,8 +16,7 @@
           :updateToDo="updateToDo"
           :clearCompleted="clearCompleted"
           :itemLeft="itemLeft"
-          :showActive="showActive"
-          :showCompleted="showCompleted"
+          :visibility="visibility"
         />
       </main>
     </div>
@@ -27,7 +26,7 @@
   </div>
 </template>
 <script>
-import ToDoInput from "./components/TodoInput/TodoInput.vue";
+import TodoInput from "./components/TodoInput/TodoInput.vue";
 import TodoList from "./components/TodoList/TodoList.vue";
 
 const STORAGE_KEY = "vue-todo-app-storage";
@@ -35,7 +34,7 @@ const STORAGE_KEY = "vue-todo-app-storage";
 export default {
   name: "App",
   components: {
-    ToDoInput,
+    TodoInput,
     TodoList,
   },
   data() {
@@ -45,9 +44,7 @@ export default {
       toDoID: 0,
       editedToDo: null,
       editedToDoText: "",
-      allBtn: "selected",
-      activeBtn: null,
-      completedBtn: null,
+      visibility: "all",
     };
   },
   created() {
@@ -92,21 +89,10 @@ export default {
       todo.text = this.editedToDoText.trim();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
     },
+
     clearCompleted() {
       this.toDos = this.toDos.filter((todo) => !todo.completed);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.toDos));
-    },
-    showActive() {
-      this.toDos = this.toDos.filter((todo) => !todo.completed);
-      this.allBtn = null;
-      this.activeBtn = "selected";
-      this.completedBtn = null;
-    },
-    showCompleted() {
-      this.toDos = this.toDos.filter((todo) => todo.completed);
-      this.allBtn = null;
-      this.activeBtn = null;
-      this.completedBtn = "selected";
     },
   },
 };
